@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<IsPackable>false</IsPackable>
+		<RootNamespace>Soml.SourceGeneration.Tests</RootNamespace>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="xunit.v3" Version="3.*" />
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<Using Include="Xunit" />
+		<ProjectReference Include="../../src/Soml/Soml.csproj" />
+		<ProjectReference Include="../../src/Soml.SourceGeneration/Soml.SourceGeneration.csproj" />
+	</ItemGroup>
+</Project>

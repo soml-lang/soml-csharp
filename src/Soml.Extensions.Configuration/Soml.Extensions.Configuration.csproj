@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<PackageId>Soml.Extensions.Configuration</PackageId>
+		<Description>SOML configuration files for Microsoft.Extensions.Configuration: AddSomlFile and AddSomlStream.</Description>
+		<Authors>Sindre Sorhus</Authors>
+		<PackageTags>soml;config;configuration;appsettings</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/soml-lang/soml-csharp</RepositoryUrl>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<IsAotCompatible>true</IsAotCompatible>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<RootNamespace>Soml.Extensions.Configuration</RootNamespace>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="readme.md" Pack="true" PackagePath="/" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="10.0.12" />
+		<ProjectReference Include="../Soml/Soml.csproj" />
+	</ItemGroup>
+</Project>

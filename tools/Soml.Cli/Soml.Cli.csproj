@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<PackageId>Soml.Cli</PackageId>
+		<Description>The decoder and encoder of the SOML conformance suite, for test harnesses: SOML to tagged JSON and back.</Description>
+		<Authors>Sindre Sorhus</Authors>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>soml</ToolCommandName>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<IsAotCompatible>true</IsAotCompatible>
+		<RootNamespace>Soml.Cli</RootNamespace>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="readme.md" Pack="true" PackagePath="/" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="../../src/Soml/Soml.csproj" />
+	</ItemGroup>
+</Project>
