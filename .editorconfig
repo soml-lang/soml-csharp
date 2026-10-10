@@ -1,0 +1,35 @@
+root = true
+
+[*]
+indent_style = tab
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.yml]
+indent_style = space
+indent_size = 2
+
+[*.cs]
+csharp_style_namespace_declarations = file_scoped:warning
+csharp_prefer_braces = true:warning
+csharp_style_var_for_built_in_types = true:suggestion
+csharp_style_var_when_type_is_apparent = true:suggestion
+dotnet_style_qualification_for_field = false:warning
+dotnet_sort_system_directives_first = true
+
+# `SomlValueKind` names the SOML types, as `JsonValueKind` names the JSON types.
+dotnet_diagnostic.CA1720.severity = none
+# `SomlObject` and `SomlArray` are named after the SOML types, as `JsonObject` and `JsonArray` are.
+dotnet_diagnostic.CA1710.severity = none
+# `Parse(string text)` reads better than the `s` of `IParsable`.
+dotnet_diagnostic.CA1725.severity = none
+
+# The conformance cases test exact bytes, including trailing whitespace, a missing final line feed, and invalid encodings, so an editor must not change them.
+[tests/Soml.Tests/conformance/**]
+charset = unset
+end_of_line = unset
+indent_style = unset
+trim_trailing_whitespace = false
+insert_final_newline = false

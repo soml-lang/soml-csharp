@@ -1,0 +1,39 @@
+name: Release
+# Run it from the Actions tab, or with `gh workflow run release.yml -f version=1.2.3`. It publishes the three packages with that version and pushes its `v` tag.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version to publish, such as 1.2.3
+        required: true
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    # A release from any other branch would tag a commit that is not on `main`.
+    if: github.ref == 'refs/heads/main'
+    env:
+      # Through an environment variable rather than inline, so the input cannot inject shell commands.
+      VERSION: ${{ inputs.version }}
+    permissions:
+      # Trusted publishing, which is set up on nuget.org, so there is no API key in the secrets.
+      id-token: write
+      # For pushing the tag.
+      contents: write
+    steps:
+      # A version that is not valid fails here, before the tests.
+      - run: '[[ $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]'
+      - uses: actions/checkout@v7
+      - uses: actions/setup-dotnet@v6
+        with:
+          global-json-file: global.json
+      - run: dotnet test --configuration Release
+      # Packs the three packable projects of the solution, in Release. They all get the version, so the dependency of the other two on `Soml` has it too.
+      - run: dotnet pack --output packages -p:Version="$VERSION"
+      # A key that is valid for an hour, so it is requested just before the push.
+      - uses: NuGet/login@v1
+        id: login
+        with:
+          user: sindresorhus
+      # It also pushes the `.snupkg` symbol package next to a package that has one. `--skip-duplicate` lets a rerun finish a push that failed partway.
+      - run: dotnet nuget push "packages/*.nupkg" --api-key "${{ steps.login.outputs.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+      - run: git push origin "HEAD:refs/tags/v$VERSION"

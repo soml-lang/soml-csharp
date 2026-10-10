@@ -1,0 +1,17 @@
+<Solution>
+	<Folder Name="/src/">
+		<Project Path="src/Soml/Soml.csproj" />
+		<Project Path="src/Soml.Extensions.Configuration/Soml.Extensions.Configuration.csproj" />
+		<Project Path="src/Soml.SourceGeneration/Soml.SourceGeneration.csproj" />
+	</Folder>
+	<Folder Name="/bench/">
+		<Project Path="bench/Soml.Benchmarks/Soml.Benchmarks.csproj" />
+	</Folder>
+	<Folder Name="/tools/">
+		<Project Path="tools/Soml.Cli/Soml.Cli.csproj" />
+	</Folder>
+	<Folder Name="/tests/">
+		<Project Path="tests/Soml.Tests/Soml.Tests.csproj" />
+		<Project Path="tests/Soml.SourceGeneration.Tests/Soml.SourceGeneration.Tests.csproj" />
+	</Folder>
+</Solution>

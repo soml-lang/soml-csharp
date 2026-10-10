@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<!-- Roslyn loads a source generator as a .NET Standard 2.0 assembly. -->
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<ImplicitUsings>disable</ImplicitUsings>
+		<IsPackable>false</IsPackable>
+		<IsRoslynComponent>true</IsRoslynComponent>
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<RootNamespace>Soml.SourceGeneration</RootNamespace>
+		<!-- The .NET Standard 2.0 reference assemblies have no nullable annotations, which these analyzers would report everywhere. -->
+		<NoWarn>$(NoWarn);CA1305;CA1307;CA1309;CA1310;CA1311;CA1865;CA1866;CA1847;RS2008</NoWarn>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="5.0.0" PrivateAssets="all" />
+	</ItemGroup>
+</Project>

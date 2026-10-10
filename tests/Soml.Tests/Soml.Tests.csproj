@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<IsPackable>false</IsPackable>
+		<RootNamespace>Soml.Tests</RootNamespace>
+		<!-- With real cultures, so that a test can check that the output does not depend on the current culture. -->
+		<InvariantGlobalization>false</InvariantGlobalization>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="xunit.v3" Version="3.*" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.12" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Fixtures/**" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+	<ItemGroup>
+		<Using Include="Xunit" />
+		<ProjectReference Include="../../src/Soml/Soml.csproj" />
+		<ProjectReference Include="../../src/Soml.SourceGeneration/Soml.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+		<ProjectReference Include="../../tools/Soml.Cli/Soml.Cli.csproj" />
+		<ProjectReference Include="../../src/Soml.Extensions.Configuration/Soml.Extensions.Configuration.csproj" />
+	</ItemGroup>
+</Project>

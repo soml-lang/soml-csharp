@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<PackageId>Soml</PackageId>
+		<Description>A strict reader, writer, formatter, and editor for SOML, a config format for humans.</Description>
+		<Authors>Sindre Sorhus</Authors>
+		<PackageTags>soml;config;configuration;parser;serializer;formatter</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/soml-lang/soml-csharp</RepositoryUrl>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<AnalysisLevel>latest-recommended</AnalysisLevel>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<IsAotCompatible>true</IsAotCompatible>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<RootNamespace>Soml</RootNamespace>
+		<TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);IncludeSourceGeneratorInPackage</TargetsForTfmSpecificContentInPackage>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="../../readme.md" Pack="true" PackagePath="/" />
+	</ItemGroup>
+	<ItemGroup>
+		<!-- The source generator ships in the package as an analyzer, so that a project that references Soml gets it. -->
+		<ProjectReference Include="../Soml.SourceGeneration/Soml.SourceGeneration.csproj" ReferenceOutputAssembly="false" PrivateAssets="all" />
+	</ItemGroup>
+	<Target Name="IncludeSourceGeneratorInPackage">
+		<MSBuild Projects="@(ProjectReference)" Targets="GetTargetPath" RemoveProperties="TargetFramework">
+			<Output TaskParameter="TargetOutputs" ItemName="SomlSourceGenerator" />
+		</MSBuild>
+		<ItemGroup>
+			<TfmSpecificPackageFile Include="@(SomlSourceGenerator)" PackagePath="analyzers/dotnet/cs" />
+		</ItemGroup>
+	</Target>
+</Project>

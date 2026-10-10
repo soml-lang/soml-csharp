@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<IsPackable>false</IsPackable>
+		<RootNamespace>Soml.Benchmarks</RootNamespace>
+		<Optimize>true</Optimize>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="BenchmarkDotNet" Version="0.15.8" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+		<PackageReference Include="Tomlyn" Version="2.10.1" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="../../src/Soml/Soml.csproj" />
+		<ProjectReference Include="../../src/Soml.SourceGeneration/Soml.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="Fixtures/**" CopyToOutputDirectory="PreserveNewest" />
+	</ItemGroup>
+</Project>
